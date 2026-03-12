@@ -1,0 +1,8 @@
+.video-modal .modal-dialog {
+  transform: translateY(-24px);
+  transition: transform 0.25s ease-out;
+}
+
+.video-modal.show .modal-dialog {
+  transform: translateY(0);
+}
