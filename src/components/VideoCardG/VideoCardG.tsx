@@ -11,11 +11,6 @@ interface VideoCardProps {
 
 function VideoCardG({ img, video, title, onClick }: VideoCardProps) {
   const [hover, setHover] = useState(false);
-  const mediaStyle = {
-    width: "100%",
-    height: "auto",
-    display: "block"
-  };
  
 
   return (
@@ -27,11 +22,11 @@ function VideoCardG({ img, video, title, onClick }: VideoCardProps) {
       onClick={onClick}
       style={{ position: "relative" }}
     >
-      <Card style={{ cursor: "pointer", overflow: "hidden" }}>
+      <Card style={{ cursor: "pointer", overflow: "hidden"}}>
         {hover && video ? (
-          <video src={video} autoPlay muted loop playsInline style={mediaStyle} />
+          <video src={video} autoPlay muted loop playsInline style={{ width: "100%" }} />
         ) : (
-          <Card.Img src={img} style={mediaStyle} />
+          <Card.Img src={img} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
         )}
 
         {hover && (

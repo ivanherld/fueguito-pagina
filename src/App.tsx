@@ -8,6 +8,7 @@ import clip2Img from './assets/videosseed/clip2img.png';
 import clip1Video from './assets/videosseed/1.Cafe_CAM.mp4';
 import clip2Video from './assets/videosseed/Mate final.mp4';
 import Frase_welcome from './components/Frase_welcome/Frase_welcome';
+import LinkUtiles from './components/LinksUtiles/LinksUtiles';
 
 
 function App() {
@@ -34,7 +35,7 @@ function App() {
       
       <Progress_Bar scenesDone={videos.length} totalScenes={105} />
       <Frase_welcome />
-    
+      <LinkUtiles />
       <Grid_Escenas videos={videos} />
 
       
