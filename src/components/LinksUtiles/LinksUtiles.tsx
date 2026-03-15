@@ -4,15 +4,22 @@ import icono from '../../assets/3. ÍCONOS/guionv2.png';
 import iconocrono from '../../assets/3. ÍCONOS/calendario v2 .png';
 import { Container } from 'react-bootstrap';
 import './LinksUtiles.css';
+import { CDN } from '../../config';
+
+
 
 function LinkUtiles() {
+
+  const guionUrl = `${CDN}/guion-cronograma/Triste%20para%20siempre.pdf`;
+  const cronogramaUrl = `${CDN}/guion-cronograma/cronograma.pdf`;
+
   return (
     <Container className="contenedor-links">
     <Card className="card-links">
       <Card.Body>
         <Card.Title className="card-links-title">Guión <img src={icono} alt="" style={{ width: 50, height: 50, marginRight: 8 }} /></Card.Title>
         
-        <Button className="btn-descargar">
+        <Button className="btn-descargar" onClick={() => window.open(guionUrl)}>
             
             Descargar
         </Button>
