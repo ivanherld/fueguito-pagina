@@ -1,51 +1,91 @@
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Navigation, Pagination } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
+import { useEffect, useMemo, useState } from 'react';
+import { Navigation, Autoplay } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import './Carrusel.css';
+import { obtenerTarjetas, type Tarjeta } from '../../utilities/tarjetasService';
 
-const imageModules = import.meta.glob(
-  "../../assets/2. REFERENCIAS/*.{png,jpg,jpeg,webp,avif,gif}",
-  { eager: true, import: "default" }
-) as Record<string, string>;
+function mezclarTarjetas(tarjetas: Tarjeta[]): Tarjeta[] {
+  return [...tarjetas].sort(() => Math.random() - 0.5);
+}
 
-const images = Object.entries(imageModules)
-  .sort(([pathA], [pathB]) =>
-    pathA.localeCompare(pathB, undefined, { numeric: true, sensitivity: "base" })
-  )
-  .map(([, src]) => src);
+const Carrusel = () => {
+  const [tarjetas, setTarjetas] = useState<Tarjeta[]>([]);
+  const [cargando, setCargando] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-export default function Carrusel() {
-  if (images.length === 0) {
-    return <p>No se encontraron imagenes en la carpeta de referencias.</p>;
-  }
+  useEffect(() => {
+    async function cargarTarjetas() {
+      setCargando(true);
+      setError(null);
+
+      try {
+        const data = await obtenerTarjetas();
+        setTarjetas(data);
+      } catch (err) {
+        const msg = err instanceof Error ? err.message : 'No se pudieron cargar las tarjetas.';
+        setError(msg);
+      } finally {
+        setCargando(false);
+      }
+    }
+
+    void cargarTarjetas();
+  }, []);
+
+  const tarjetasAleatorias = useMemo(() => mezclarTarjetas(tarjetas), [tarjetas]);
 
   return (
-    <Swiper
-      modules={[Navigation, Pagination, Autoplay]}
-      navigation
-      pagination={{ clickable: true }}
-      autoplay={{ delay: 3000, disableOnInteraction: false }}
-      loop={images.length > 1}
-      spaceBetween={16}
-      slidesPerView={1}
-      style={{ width: "100%" }}
-    >
-      {images.map((src, index) => (
-        <SwiperSlide key={src}>
-          <img
-            src={src}
-            alt={`Imagen ${index + 1}`}
-            style={{
-              width: "100%",
-              maxHeight: "520px",
-              objectFit: "cover",
-              borderRadius: "12px",
-              display: "block",
-            }}
-          />
-        </SwiperSlide>
-      ))}
-    </Swiper>
+    <section className="carrusel-contenedor">
+      <h2 className="prodDest">¿Quiénes somos?</h2>
+
+      {cargando && <p className="carrusel-feedback">Cargando tarjetas...</p>}
+      {error && <p className="carrusel-feedback">{error}</p>}
+      {!cargando && !error && tarjetasAleatorias.length === 0 && (
+        <p className="carrusel-feedback">No hay tarjetas para mostrar.</p>
+      )}
+
+      {!cargando && !error && tarjetasAleatorias.length > 0 && (
+        <Swiper
+          modules={[Navigation, Autoplay]}
+          navigation
+          breakpoints={{
+            480: {
+              slidesPerView: 1,
+              spaceBetween: 14,
+            },
+            768: {
+              slidesPerView: 2,
+              spaceBetween: 18,
+            },
+            1200: {
+              slidesPerView: 3,
+              spaceBetween: 22,
+            },
+          }}
+          slidesPerView={1}
+          spaceBetween={12}
+          autoplay={{ delay: 2600, disableOnInteraction: false }}
+          loop
+          watchOverflow
+        >
+          {tarjetasAleatorias.map((tarjeta) => (
+            <SwiperSlide key={tarjeta.id}>
+              <article className="producto-tarjeta">
+                {tarjeta.url ? (
+                  <img className="imagen-tarjeta" src={tarjeta.url} alt={tarjeta.titulo} loading="lazy" />
+                ) : (
+                  <div className="imagen-placeholder">Sin imagen</div>
+                )}
+              </article>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      )}
+    </section>
   );
-}
+};
+
+export default Carrusel;
+

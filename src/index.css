@@ -11,6 +11,16 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
+#inicio,
+#escenas,
+#contacto {
+  scroll-margin-top: 110px;
+}
+
 a {
   font-weight: 500;
   color: #646cff;

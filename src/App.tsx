@@ -3,42 +3,72 @@ import './App.css'
 import Grid_Escenas from './components/Grid/Grid_Escenas';
 import Portada from './components/Portada/Portada'
 import Progress_Bar from './components/Progress_Bar/Progress_Bar';
-import clip1Img from './assets/videosseed/clip1img.png';
-import clip2Img from './assets/videosseed/clip2img.png';
-import clip1Video from './assets/videosseed/1.Cafe_CAM.mp4';
-import clip2Video from './assets/videosseed/Mate final.mp4';
 import Frase_welcome from './components/Frase_welcome/Frase_welcome';
 import LinkUtiles from './components/LinksUtiles/LinksUtiles';
+import Carrusel from './components/Carrusel/Carrusel';
+import { useEffect, useMemo, useState } from 'react';
+import { obtenerEscenas, type Escena } from './utilities/escenasService';
+import Footer from './components/Footer/Footer';
+import NavBar from './components/NavBar/NavBar';
 
 
 function App() {
-  
-   const videos = [
-    {
-      title: "Clip 1",
-      img: clip1Img,
-      video: clip1Video,
-      storyboard: clip1Img
-    },
-    {
-      title: "Clip 2",
-      img: clip2Img,
-      video: clip2Video,
-      storyboard: clip2Img
+  const [escenas, setEscenas] = useState<Escena[]>([]);
+  const [cargando, setCargando] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    async function cargarEscenas() {
+      setCargando(true);
+      setError(null);
+
+      try {
+        const data = await obtenerEscenas();
+        setEscenas(data);
+      } catch (err) {
+        if (err instanceof Error) {
+          setError(err.message);
+        } else {
+          setError('No pudimos cargar las escenas desde Supabase.');
+        }
+      } finally {
+        setCargando(false);
+      }
     }
-  ];
+
+    void cargarEscenas();
+  }, []);
+
+  const escenasFilmadas = useMemo(
+    () => escenas.filter((escena) => escena.filmado),
+    [escenas],
+  );
 
   return (
     <>
-      <Portada />
 
-      
-      <Progress_Bar scenesDone={videos.length} totalScenes={105} />
+      <NavBar />
+      <section id="inicio">
+        <Portada />
+      </section>
+
+      <Progress_Bar scenesDone={escenasFilmadas.length} totalScenes={escenas.length || 102} />
       <Frase_welcome />
       <LinkUtiles />
-      <Grid_Escenas videos={videos} />
-
       
+      <section id="escenas">
+        {cargando && <p>Cargando escenas...</p>}
+        {error && <p>{error}</p>}
+        {!cargando && !error && escenas.length === 0 && (
+          <p>No hay escenas para mostrar. Revisa la tabla, el nombre y las politicas RLS en Supabase.</p>
+        )}
+        {!cargando && !error && <Grid_Escenas videos={escenas} />}
+      </section>
+
+      <section id="contacto">
+        <Carrusel />
+      </section>
+      <Footer />
     </>
   )
 }

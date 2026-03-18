@@ -30,7 +30,7 @@ function LinkUtiles() {
       <Card.Body>
         <Card.Title className="card-links-title">Cronograma <img src={iconocrono} alt="" style={{ width: 50, height: 50, marginRight: 8 }} /></Card.Title>
         
-        <Button className="btn-descargar">
+          <Button className="btn-descargar" onClick={() => window.open(cronogramaUrl)}>
             
             Descargar
         </Button>

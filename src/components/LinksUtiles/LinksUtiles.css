@@ -1,14 +1,16 @@
 .contenedor-links {
     display: flex;
     justify-content: center;
-    align-items: center;
-    height: 20vh;
+    align-items: stretch;
+    min-height: 0;
     gap: 20px;
     flex-wrap: wrap;
+    padding: 12px 0;
+    margin-bottom: 20px;
 }
 
 .card-links {
-    width: 18rem;
+    width: min(18rem, 100%);
     background-color: #f3fbfc;
     border: 1px solid #7fc6d0;
     border-radius: 12px;
@@ -32,4 +34,15 @@
     background-color: #25747f !important;
     border-color: #25747f !important;
     color: #ffffff !important;
+}
+
+@media (max-width: 768px) {
+    .contenedor-links {
+        gap: 12px;
+        margin-bottom: 28px;
+    }
+
+    .card-links {
+        width: min(22rem, 100%);
+    }
 }

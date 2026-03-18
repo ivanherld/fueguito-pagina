@@ -1,46 +1,43 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Card } from "react-bootstrap";
+import "./VideoCardG.css";
 
 interface VideoCardProps {
   img: string;
-  video?: string;
   title: string;
+  hasClipUrl: boolean;
   onClick: () => void;
 }
 
-function VideoCardG({ img, video, title, onClick }: VideoCardProps) {
+function VideoCardG({ img, title, hasClipUrl, onClick }: VideoCardProps) {
   const [hover, setHover] = useState(false);
- 
 
   return (
     <motion.div
-      whileHover={{ scale: 1.15 }}
-      transition={{ duration: 0.2 }}
+      whileHover={{ scale: 1.04 }}
+      transition={{ duration: 0.18 }}
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
       onClick={onClick}
-      style={{ position: "relative" }}
+      className="video-card-wrapper"
     >
-      <Card style={{ cursor: "pointer", overflow: "hidden"}}>
-        {hover && video ? (
-          <video src={video} autoPlay muted loop playsInline style={{ width: "100%" }} />
+      <Card className={`video-card ${hasClipUrl ? "video-card--with-clip" : ""}`}>
+        {img ? (
+          <div className="video-card-media">
+            <Card.Img src={img} loading="lazy" className="video-card-img" />
+            {!hasClipUrl && (
+              <div className="video-card-tint" />
+            )}
+          </div>
         ) : (
-          <Card.Img src={img} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+          <div className="video-card-fallback">
+            {title}
+          </div>
         )}
 
-        {hover && (
-          <div
-            style={{
-              position: "absolute",
-              bottom: 0,
-              left: 0,
-              right: 0,
-              background: "rgba(0,0,0,0.6)",
-              color: "white",
-              padding: "6px"
-            }}
-          >
+        {hover && img && (
+          <div className="video-card-title-overlay">
             {title}
           </div>
         )}

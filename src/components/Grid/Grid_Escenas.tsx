@@ -2,31 +2,25 @@ import { Container, Row, Col } from "react-bootstrap";
 import { useState } from "react";
 import VideoModal from "../VideoModal/VideoModal";
 import VideoCardG from "../VideoCardG/VideoCardG";
-
-interface VideoItem {
-  title: string;
-  img: string;
-  video: string;
-  storyboard: string;
-}
+import { type Escena } from "../../utilities/escenasService";
 
 interface GalleryProps {
-  videos: VideoItem[];
+  videos: Escena[];
 }
 
 function Grid_Escenas({ videos }: GalleryProps) {
-  const [selected, setSelected] = useState<VideoItem | null>(null);
+  const [selected, setSelected] = useState<Escena | null>(null);
 
   return (
     <Container>
-      <Row>
+      <Row className="g-3">
 
-        {videos.map((v, i) => (
-          <Col md={3} key={i}>
+        {videos.map((v) => (
+          <Col xs={12} sm={6} md={4} lg={3} key={v.id}>
             <VideoCardG
               img={v.img}
-              video={v.video}
               title={v.title}
+              hasClipUrl={Boolean(v.video)}
               onClick={() => setSelected(v)}
             />
           </Col>
@@ -40,6 +34,12 @@ function Grid_Escenas({ videos }: GalleryProps) {
           video={selected.video}
           title={selected.title}
           storyboard={selected.storyboard}
+          descripcion={selected.descripcion}
+          orden={selected.orden}
+          color={selected.color}
+          fechaAprox={selected.fechaAprox}
+          decorado={selected.decorado}
+          comentariosFilmacion={selected.comentariosFilmacion}
 
           handleClose={() => setSelected(null)}
         />

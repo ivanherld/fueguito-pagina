@@ -6,3 +6,47 @@
 .video-modal.show .modal-dialog {
   transform: translateY(0);
 }
+
+.video-modal .modal-content {
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.video-modal--verde .modal-content {
+  background-color: #e6f5e7;
+  border-color: #4f9a64;
+}
+
+.video-modal--naranja .modal-content {
+  background-color: #fff1e3;
+  border-color: #dd8a3c;
+}
+
+.video-modal--lila .modal-content {
+  background-color: #f3ecff;
+  border-color: #9b78d6;
+}
+
+.video-modal--amarillo .modal-content {
+  background-color: #fff9dc;
+  border-color: #d2ae34;
+}
+
+.video-modal--gris .modal-content {
+  background-color: #d4d4d4;
+  border-color: #4f4f4f;
+}
+
+.video-modal--marron .modal-content {
+  background-color: #ddb67a;
+  border-color: #6f4729;
+}
+
+.video-modal--azul .modal-content {
+  background-color: #e8f2ff;
+  border-color: #4b83cb;
+}
+
+.video-modal--rosa .modal-content {
+  background-color: #ffeaf2;
+  border-color: #cc6f95;
+}
