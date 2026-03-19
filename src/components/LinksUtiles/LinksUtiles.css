@@ -21,6 +21,13 @@
     font-weight: 700;
 }
 
+.icon-filmadora {
+    font-size: 2rem;
+    margin-left: 8px;
+    vertical-align: middle;
+    color: #2f8e9b;
+}
+
 .btn-descargar {
     background-color: #2f8e9b !important;
     border-color: #2f8e9b !important;
@@ -34,6 +41,19 @@
     background-color: #25747f !important;
     border-color: #25747f !important;
     color: #ffffff !important;
+}
+
+.proxima-filmacion {
+    margin-top: 6px;
+}
+
+.proxima-filmacion__linea {
+    margin-bottom: 6px;
+    color: #1f4e56;
+}
+
+.proxima-filmacion__linea:last-child {
+    margin-bottom: 0;
 }
 
 @media (max-width: 768px) {

@@ -9,8 +9,9 @@ export default function Portada() {
         alt="Portada"
         className="imagen-portada"
       />
+        <h6>Presenta</h6>
         <h1>Triste para siempre</h1>
-        <p>Diario de Rodaje</p>
+        <h4>Diario de Rodaje</h4>
         
       </section>
   )

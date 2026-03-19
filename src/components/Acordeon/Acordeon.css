@@ -1,0 +1,89 @@
+.acordeon {
+  margin-top: 8px;
+}
+
+.acordeon-card {
+  border: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.acordeon-card__header {
+  padding: 8px;
+}
+
+.acordeon-card__body {
+  white-space: pre-wrap;
+}
+
+.acordeon-toggle {
+  width: 100%;
+  text-align: left;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 8px;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 600;
+  line-height: 1.3;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.acordeon-toggle__icon {
+  color: var(--acordeon-icon-color);
+  margin-right: 8px;
+  vertical-align: middle;
+  font-size: 1.2rem;
+}
+
+.acordeon-toggle--closed {
+  color: #1f1f1f;
+  background-color: var(--acordeon-base);
+  border-color: var(--acordeon-accent);
+  --acordeon-icon-color: var(--acordeon-accent);
+}
+
+.acordeon-toggle--open {
+  color: #ffffff;
+  background-color: var(--acordeon-accent);
+  border-color: var(--acordeon-accent);
+  --acordeon-icon-color: #fff4c2;
+}
+
+.acordeon-toggle--verde {
+  --acordeon-base: #e6f5e7;
+  --acordeon-accent: #4f9a64;
+}
+
+.acordeon-toggle--naranja {
+  --acordeon-base: #fff1e3;
+  --acordeon-accent: #dd8a3c;
+}
+
+.acordeon-toggle--lila {
+  --acordeon-base: #f3ecff;
+  --acordeon-accent: #9b78d6;
+}
+
+.acordeon-toggle--amarillo {
+  --acordeon-base: #fff9dc;
+  --acordeon-accent: #d2ae34;
+}
+
+.acordeon-toggle--gris {
+  --acordeon-base: #d4d4d4;
+  --acordeon-accent: #4f4f4f;
+}
+
+.acordeon-toggle--marron {
+  --acordeon-base: #ddb67a;
+  --acordeon-accent: #6f4729;
+}
+
+.acordeon-toggle--azul {
+  --acordeon-base: #e8f2ff;
+  --acordeon-accent: #4b83cb;
+}
+
+.acordeon-toggle--rosa {
+  --acordeon-base: #ffeaf2;
+  --acordeon-accent: #cc6f95;
+}

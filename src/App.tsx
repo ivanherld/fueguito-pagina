@@ -51,10 +51,10 @@ function App() {
       <section id="inicio">
         <Portada />
       </section>
-
-      <Progress_Bar scenesDone={escenasFilmadas.length} totalScenes={escenas.length || 102} />
       <Frase_welcome />
-      <LinkUtiles />
+      <Progress_Bar scenesDone={escenasFilmadas.length} totalScenes={escenas.length || 102} />
+      
+      <LinkUtiles escenas={escenas} />
       
       <section id="escenas">
         {cargando && <p>Cargando escenas...</p>}

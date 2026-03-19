@@ -5,7 +5,7 @@ import logo from '../../assets/1. LOGOS/fueguitoROJO-03.png';
 export default function NavBar() {
   const [showPopover, setShowPopover] = useState(false);
   const [copied, setCopied] = useState(false);
-  const alias = 'fueguito.arg';
+  const alias = 'triste.pelicula';
 
   const handleCopyAlias = async () => {
     try {

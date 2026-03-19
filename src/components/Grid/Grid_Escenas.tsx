@@ -12,7 +12,9 @@ function Grid_Escenas({ videos }: GalleryProps) {
   const [selected, setSelected] = useState<Escena | null>(null);
 
   return (
+    
     <Container>
+      <h2>Escenas</h2>
       <Row className="g-3">
 
         {videos.map((v) => (

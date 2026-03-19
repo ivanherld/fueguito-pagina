@@ -38,7 +38,7 @@ const Carrusel = () => {
 
   return (
     <section className="carrusel-contenedor">
-      <h2 className="prodDest">¿Quiénes somos?</h2>
+      <h1 className="prodDest">¿Quiénes somos?</h1>
 
       {cargando && <p className="carrusel-feedback">Cargando tarjetas...</p>}
       {error && <p className="carrusel-feedback">{error}</p>}

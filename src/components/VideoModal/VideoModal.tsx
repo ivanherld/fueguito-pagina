@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import { Modal } from "react-bootstrap";
+import Acordeon from "../Acordeon/Acordeon";
 import "./VideoModal.css";
 
 interface VideoModalProps {
@@ -110,9 +111,7 @@ function VideoModal({
 
         {fechaAprox && <p style={{ marginBottom: "4px" }}><strong>Fecha aprox:</strong> {fechaAprox}</p>}
         {decorado && <p style={{ marginBottom: "4px" }}><strong>Decorado:</strong> {decorado}</p>}
-        {comentariosFilmacion && (
-          <p style={{ marginBottom: 0 }}><strong>Comentario:</strong> {comentariosFilmacion}</p>
-        )}
+        {comentariosFilmacion && <Acordeon cardBody={comentariosFilmacion} sceneColor={color} />}
 
       </Modal.Body>
     </Modal>
