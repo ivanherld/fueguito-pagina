@@ -94,7 +94,7 @@ function formatFecha(value: Date): string {
 
 function LinkUtiles({ escenas }: LinkUtilesProps) {
 
-  const guionUrl = `${CDN}/guion-cronograma/Triste%20para%20siempre.pdf`;
+  // const guionUrl = `${CDN}/guion-cronograma/Triste%20para%20siempre.pdf`;
   const cronogramaUrl = `${CDN}/guion-cronograma/cronograma.pdf`;
 
   const proximaFilmacion = useMemo(() => {
@@ -116,7 +116,7 @@ function LinkUtiles({ escenas }: LinkUtilesProps) {
 
   return (
     <Container className="contenedor-links">
-    <Card className="card-links">
+    {/* <Card className="card-links">
       <Card.Body>
         <Card.Title className="card-links-title">Guión <img src={icono} alt="" style={{ width: 50, height: 50, marginRight: 8 }} /></Card.Title>
         
@@ -125,7 +125,7 @@ function LinkUtiles({ escenas }: LinkUtilesProps) {
             Descargar
         </Button>
       </Card.Body>
-    </Card>
+    </Card> */}
 
      <Card className="card-links">
       <Card.Body>
