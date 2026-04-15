@@ -1,6 +1,6 @@
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
-import icono from '../../assets/3. ÍCONOS/guionv2.png';
+//import icono from '../../assets/3. ÍCONOS/guionv2.png';
 import iconocrono from '../../assets/3. ÍCONOS/calendario v2 .png';
 import { Container } from 'react-bootstrap';
 import './LinksUtiles.css';
